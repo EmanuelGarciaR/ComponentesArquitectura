@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 
 app.get('/api/saludo', (req, res) => {
-  res.json({ mensaje: "Hola desde API sin Docker 🚀" });
+  res.json({ mensaje: "Hola desde API usando Docker 🚀" });
 });
 
 app.get('/api/test', (req, res) => {
