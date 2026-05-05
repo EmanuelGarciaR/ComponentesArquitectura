@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>IAM Simulator</title>
+</head>
+<body>
+  <h1>Simulación AWS IAM</h1>
+
+  <button onclick="getBuckets('alejandro')">Usuario normal</button>
+  <button onclick="getBuckets('admin')">Admin</button>
+
+  <ul id="list"></ul>
+
+  <script>
+    async function getBuckets(user) {
+      try {
+        const res = await fetch('http://localhost:3000/buckets', {
+          method: 'GET',
+          headers: {
+            'x-user': user
+          }
+        });
+
+        const data = await res.json();
+
+        const list = document.getElementById('list');
+        list.innerHTML = '';
+
+        if (Array.isArray(data)) {
+          data.forEach(bucket => {
+            const li = document.createElement('li');
+            li.textContent = bucket;
+            list.appendChild(li);
+          });
+        } else {
+          const li = document.createElement('li');
+          li.textContent = data.error;
+          list.appendChild(li);
+        }
+
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  </script>
+</body>
+</html>
