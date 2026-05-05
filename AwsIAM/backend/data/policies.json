@@ -1,0 +1,22 @@
+{
+    "S3ReadOnly": 
+    {
+        "Statement": [
+            {
+                "Effect": "Allow",
+                "Action": ["s3:ListBuckets"],
+                "Resource": "*"
+            }
+        ]
+    },
+    "S3FullAccess": 
+    {
+        "Statement": [
+            {
+                "Effect": "Allow",
+                "Action": ["s3:*"],
+                "Resource": "*"
+            }
+        ]
+    }
+}
