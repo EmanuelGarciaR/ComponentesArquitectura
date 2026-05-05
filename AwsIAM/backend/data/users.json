@@ -1,0 +1,10 @@
+{
+    "alejandro": 
+    {
+        "policies": ["S3ReadOnly"]
+    },
+    "admin": 
+    {
+        "policies": ["S3FullAccess"]
+    }
+}
