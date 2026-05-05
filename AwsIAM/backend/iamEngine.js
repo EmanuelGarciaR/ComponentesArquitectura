@@ -9,7 +9,7 @@ if (!user) return false;
 for (let policyName of user.policies) {
 const policy = policies[policyName];
 
-```
+
 for (let stmt of policy.Statement) {
   if (
     stmt.Effect === "Allow" &&
@@ -18,7 +18,7 @@ for (let stmt of policy.Statement) {
     return true;
   }
 }
-```
+
 
 }
 
