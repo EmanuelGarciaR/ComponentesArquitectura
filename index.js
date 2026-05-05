@@ -1,9 +1,8 @@
-// index.js
 import { ApolloServer, gql } from 'apollo-server';
 
 // El Schema define QUÉ datos tienes y de qué tipo son.
 const typeDefs = gql`
-// Esto es un tipo. Define la forma de un objeto.
+# Esto es un tipo. Define la forma de un objeto.
     type Usuario {
         id: ID!
         nombre: String!
@@ -11,15 +10,15 @@ const typeDefs = gql`
         edad: Int
     }
 
-// Query: define todo lo que el cliente PUEDE LEER.
-// Cómo los "GET" de REST.
+# Query: define todo lo que el cliente PUEDE LEER.
+# Cómo los "GET" de REST.
     type Query {
         usuarios: [Usuario]
         usuario(id: ID!): Usuario
     }
 
-//Mutation: define todo lo que el cliente PUEDE MODIFICAR.
-//Cómo los "POST/PUT/DELETE" de REST.
+#Mutation: define todo lo que el cliente PUEDE MODIFICAR.
+#Cómo los "POST/PUT/DELETE" de REST.
     type Mutation {
         crearUsuario(nombre: String!, email: String!, edad: Int): Usuario
     }
@@ -42,7 +41,7 @@ const usuariosDB = [
 // El objeto tiene que tener la MISMA estructura que los tipos especiales del schema.
 const resolvers = {
     Query: {
-    // _ es el "parent" (no se usa en resolvers raíz), _args son los argumentos
+    //_ es el "parent" (no se usa en resolvers raíz), _args son los argumentos
     usuarios: () => {
         return usuariosDB;
     },
@@ -68,3 +67,15 @@ const resolvers = {
         },
     },
 };
+
+
+// Crear el servidor pasándole el schema y los resolvers
+const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+});
+
+// Iniciar el servidor (por defecto en puerto 4000)
+server.listen().then(({ url }) => {
+    console.log(`🚀 Servidor corriendo en ${url}`);
+});
