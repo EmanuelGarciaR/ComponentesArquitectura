@@ -1,0 +1,16 @@
+const buckets = ["photos", "videos", "documents"];
+
+function listBuckets() {
+return buckets;
+}
+
+function deleteBucket(name) {
+const index = buckets.indexOf(name);
+if (index !== -1) {
+buckets.splice(index, 1);
+return true;
+}
+return false;
+}
+
+module.exports = { listBuckets, deleteBucket };
